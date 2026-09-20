@@ -1,32 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Доставка еды{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}FoodBonus{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/foodbonus_styles.css' %}">
 </head>
 <body>
-<header>
-    <nav>
+<header class="header">
+    <a class="logo" href="{% url 'dish_list' %}">FoodBonus</a>
+    <nav class="navigation">
         <a href="{% url 'dish_list' %}">Меню</a>
-
         {% if user.is_authenticated %}
             <span>Пользователь: {{ user.username }}</span>
             <span>Бонусы: {{ user.bonus_balance }}</span>
             <a href="{% url 'my_orders' %}">Мои заказы</a>
-
             <form action="{% url 'logout' %}" method="post" style="display:inline;">
                 {% csrf_token %}
-                <button type="submit">Выйти</button>
+                <button type="submit" class="button button-secondary">Выйти</button>
             </form>
         {% else %}
-            <a href="{% url 'login' %}">Войти</a>
-            <a href="{% url 'register' %}">Регистрация</a>
+            <a class="button" href="{% url 'login' %}">Войти</a>
+            <a class="button button-secondary" href="{% url 'register' %}">Регистрация</a>
         {% endif %}
     </nav>
-    <hr>
 </header>
 
-<main>
+<main class="container">
     {% block content %}{% endblock %}
 </main>
 </body>

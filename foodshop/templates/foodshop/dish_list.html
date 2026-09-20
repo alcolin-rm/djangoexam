@@ -1,18 +1,23 @@
 {% extends 'base.html' %}
+{% block title %}Меню — FoodBonus{% endblock %}
 
 {% block content %}
 <h1>Меню</h1>
 
-{% for dish in dishes %}
-    <div style="margin-bottom: 30px;">
-        {% if dish.image %}
-            <img src="{{ dish.image.url }}" alt="{{ dish.name }}" width="200">
-        {% endif %}
-        <h2>{{ dish.name }}</h2>
-        <p>Цена: {{ dish.price }} ₽</p>
-        <a href="{% url 'order_create' %}?dish={{ dish.id }}">Заказать</a>
-    </div>
-{% empty %}
-    <p>Блюд пока нет.</p>
-{% endfor %}
+<div class="dish-list">
+    {% for dish in dishes %}
+        <article class="dish-card">
+            {% if dish.image %}
+                <img class="dish-image" src="{{ dish.image.url }}" alt="{{ dish.name }}">
+            {% endif %}
+            <div class="dish-content">
+                <h2>{{ dish.name }}</h2>
+                <p class="price">Стоимость: {{ dish.price }} ₽</p>
+                <a class="button" href="{% url 'order_create' %}?dish={{ dish.id }}">Заказать</a>
+            </div>
+        </article>
+    {% empty %}
+        <p>Блюд пока нет.</p>
+    {% endfor %}
+</div>
 {% endblock %}

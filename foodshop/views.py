@@ -18,12 +18,12 @@ def register(request):
     else:
         form = RegisterForm()
 
-    return render(request, 'shop/register.html', {'form': form})
+    return render(request, 'foodshop/register.html', {'form': form})
 
 
 def dish_list(request):
     dishes = Dish.objects.all()
-    return render(request, 'shop/dish_list.html', {'dishes': dishes})
+    return render(request, 'foodshop/dish_list.html', {'dishes': dishes})
 
 
 @login_required
@@ -57,10 +57,10 @@ def order_create(request):
     else:
         form = OrderForm(initial=initial)
 
-    return render(request, 'shop/order_create.html', {'form': form})
+    return render(request, 'foodshop/order_create.html', {'form': form})
 
 
 @login_required
 def my_orders(request):
     orders = Order.objects.filter(client=request.user).select_related('dish')
-    return render(request, 'shop/my_orders.html', {'orders': orders})
+    return render(request, 'foodshop/my_orders.html', {'orders': orders})

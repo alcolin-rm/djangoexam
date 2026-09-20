@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
+{% block title %}Регистрация — FoodBonus{% endblock %}
 
 {% block content %}
-<h1>Регистрация</h1>
-
-<form method="post">
+<form class="order-form" method="post">
     {% csrf_token %}
+    <h1>Регистрация</h1>
     {{ form.as_p }}
-    <button type="submit">Зарегистрироваться</button>
+    <button class="button" type="submit">Зарегистрироваться</button>
 </form>
 {% endblock %}

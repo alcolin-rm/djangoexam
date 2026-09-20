@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
+{% block title %}Мои заказы — FoodBonus{% endblock %}
 
 {% block content %}
 <h1>Мои заказы</h1>
 
 {% if orders %}
-    <ul>
+    <div class="order-list">
         {% for order in orders %}
-            <li>{{ order.dish.name }} — {{ order.dish.price }} ₽</li>
+            <article class="order-item">
+                <span class="order-name">{{ order.dish.name }}</span>
+                <span class="order-price">{{ order.dish.price }} ₽</span>
+            </article>
         {% endfor %}
-    </ul>
+    </div>
 {% else %}
     <p>У вас пока нет заказов</p>
 {% endif %}
